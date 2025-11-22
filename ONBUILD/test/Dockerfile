@@ -1,1 +1,1 @@
-FROM almalinux:9
+FROM onbuild:v1
