@@ -27,3 +27,21 @@ When I run docker build -t image:version ., the Docker daemon reads the Dockerfi
 ```
 When I run docker run -d image:version, Docker first checks whether the image exists locally. If not, it pulls it from the configured registry such as Docker Hub or ECR. Docker then creates a container from the image, adds a writable layer on top of the image layers, configures networking and storage, and starts the process defined in CMD or ENTRYPOINT. The container remains running as long as the main process inside the container is running; if that process exits, the container stops.
 ```
+
+## can we delete the image of a running container?
+```
+Docker does not allow deleting an image that is being used by a running or stopped container.
+The image acts as the parent template for containers, and its layers may be shared across multiple containers.
+To remove the image, we must first stop and remove the dependent containers, unless we force-remove the image.
+```
+```
+docker rmi nginx
+```
+```
+Error response from daemon:
+conflict: unable to remove repository reference
+(image is being used by running container)
+```
+```
+docker rmi -f <image_id>
+```
