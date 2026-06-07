@@ -153,3 +153,12 @@ In production, docker stop is preferred, while docker kill is used when a contai
 Yes we can create an image from a running container using command
 docker commit <ID/name> imagename
 ```
+
+## can we copy files or dir from host to running container and vice versa?
+```
+docker cp is used to copy files or directories between a Docker container and the host system. 
+It is commonly used to retrieve logs, configuration files, or application artifacts from containers without logging into them.
+
+docker cp <src path> <containerID/name>:<TargetPath> --> copy from Host to Container
+docker cp <containerID/name>:<src path> <TargetPath> --> copy from container to host
+```
