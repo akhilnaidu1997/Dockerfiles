@@ -42,6 +42,20 @@ Docker then creates a container from the image, adds a writable layer on top of 
 The container remains running as long as the main process inside the container is running; if that process exits, the container stops.
 ```
 
+## Docker Image Commands
+```
+docker images --> to see all images
+docker build -t <url>/<username>/<image>:<tag> . --> to tag image with name and version
+docker push <url>/<username>/<image>:<tag> --> to push image to ECR or Dockerhub
+docker pull <url>/<username>/<image>:<tag> --> to pull image
+docker login -u <username> -p<password> --> to login to the dockerhub
+docker inspect <imagename> --> to inspect image
+docker rmi <image/ID> --> to delete images
+docker images -q --> to get only the ID's of all images
+docker rmi $(docker images -q) --> to delete all images using ID's
+docker tag <imageID> <imagename> --> to tag the image after buidling
+```
+
 ## can we delete the image of a running container?
 ```
 Docker does not allow deleting an image that is being used by a running or stopped container.
@@ -57,7 +71,7 @@ conflict: unable to remove repository reference
 (image is being used by running container)
 ```
 ```
-docker rmi -f <image_id>
+docker rmi -f <image_id> - this will just untag the image but it wont delete image
 ```
 
 ## command to see docker image layers?
@@ -80,3 +94,4 @@ They are commonly created when an image is rebuilt with the same repository name
 We can list them using docker images -f dangling=true and 
 remove them using docker image prune.
 ```
+
