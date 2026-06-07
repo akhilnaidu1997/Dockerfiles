@@ -95,3 +95,26 @@ We can list them using docker images -f dangling=true and
 remove them using docker image prune.
 ```
 
+## docker system prune
+```
+docker system prune command is used to delete all dangling images, all dangling build cache, all stopped containers, all networks not used by ateast one container.
+```
+
+## How can you copy image from one server to another server?
+```
+Lets say I want to copy image from one server to another without using repos:
+we can use commands to do this:
+
+docker save <Image> -o <file>.tar
+
+since image is not a file, it is collection of multiple image layers. Hence we are zipping the file.
+Now we can copy the tar file between servers using WINSCP tool
+Once after copied, then we can run
+
+docker load -i <file>.tar
+
+to load the docker image
+
+-i --> stands for input
+-0 --> stands for output
+```
