@@ -147,3 +147,9 @@ docker stop gracefully stops a container by sending SIGTERM and allowing the app
 docker kill sends SIGKILL immediately and forcefully terminates the container without allowing cleanup. 
 In production, docker stop is preferred, while docker kill is used when a container becomes unresponsive."
 ```
+
+## Can we create image out of a running container
+```
+Yes we can create an image from a running container using command
+docker commit <ID/name> imagename
+```
