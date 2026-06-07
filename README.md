@@ -56,6 +56,28 @@ docker rmi $(docker images -q) --> to delete all images using ID's
 docker tag <imageID> <imagename> --> to tag the image after buidling
 ```
 
+## Container commands
+```
+docker ps --> to see the list of running containers
+docker ps -a --> to see all stopped, exited and running containers
+docker create nginx:latest --> to create the container
+docker start nginx:latest --> to start the container
+docker run nginx --> this will pull image, creates and starts container
+docker stop <ID/name> --> to stop container
+docker rm nginx --> to remove stopped container
+docker rm -f nginx --> to remove running container
+docker rm $(docker ps -aq -f status=exited) --> to remove all sxited container
+docker run -d --name <container-name> -p <hostport>:<containerport> imagename --> to start container
+-d -> detach mode
+-p -> port mapping
+--name -> to define name for container or else daemon generates random name to container
+docker rename <oldname> <newname>
+docker restart <ID/name>
+docker kill <ID/name>
+docker stop <ID/name>
+docker exec -it <ID/name> /bin/bash
+```
+
 ## can we delete the image of a running container?
 ```
 Docker does not allow deleting an image that is being used by a running or stopped container.
@@ -117,4 +139,11 @@ to load the docker image
 
 -i --> stands for input
 -0 --> stands for output
+```
+
+## Difference between docker stop and docker kill
+```
+docker stop gracefully stops a container by sending SIGTERM and allowing the application to perform cleanup before shutting down. 
+docker kill sends SIGKILL immediately and forcefully terminates the container without allowing cleanup. 
+In production, docker stop is preferred, while docker kill is used when a container becomes unresponsive."
 ```
