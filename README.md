@@ -59,3 +59,24 @@ conflict: unable to remove repository reference
 ```
 docker rmi -f <image_id>
 ```
+
+## command to see docker image layers?
+```
+docker history <image>:<tag> is used to view the image layers, the commands used to create them, and their respective sizes.
+```
+```
+docker history <image>:<tag>
+
+IMAGE          CREATED        CREATED BY                     SIZE
+abc123         2 days ago     RUN apt-get install nginx      45MB
+def456         2 days ago     COPY app /app                 10MB
+ghi789         2 days ago     FROM ubuntu:22.04            77MB
+```
+
+## what are dangling images?
+```
+Dangling images are untagged Docker images that appear as <none>:<none>. 
+They are commonly created when an image is rebuilt with the same repository name and tag, causing the old image to lose its reference. 
+We can list them using docker images -f dangling=true and 
+remove them using docker image prune.
+```
