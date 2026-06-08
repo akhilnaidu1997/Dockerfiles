@@ -193,3 +193,18 @@ Hence we cant run multiple containers with same port due to port conflicts.
 None means it doesnot have any networking. we can run containers using this network but these cant accessible from within docker/host or from internet.
 App would be running but we cant access since all network is disabled excpet loopback IP.
 ```
+
+## Networking commands
+```
+docker network ls 
+docker network create <network name>
+docker network inspect <network name>
+
+Since we cant communicate with the containers running in the different network.
+We can connect containers in diff network to the same network to establish communication.
+
+docker network connect <network name> <container name>
+
+We can also disconnect
+docker network disconnect <network name> <container name>
+```
