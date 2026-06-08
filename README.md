@@ -162,3 +162,34 @@ It is commonly used to retrieve logs, configuration files, or application artifa
 docker cp <src path> <containerID/name>:<TargetPath> --> copy from Host to Container
 docker cp <containerID/name>:<src path> <TargetPath> --> copy from container to host
 ```
+
+## Docker networking
+```
+We have different types of networking in docker:
+    Bridge Network
+    Host Network
+    Null Network
+containers connected to Docker's default bridge network receive IP addresses from the subnet configured on the docker0 bridge interface.
+```
+
+## Bridge Network:
+```
+It creates an isolated network within the host where containers within this network can communicate via IP and container names.
+External access is restricted here and communication happens only within host.
+when we install docker by default it creates bridge network.
+Here containers can only communicate via IP address of containers but not with container names.
+It is recommended to run containers only in custom bridge network where containers can communicate via names.
+```
+
+## Host Network:
+```
+Host network is used when we want to make our app accessible from the internet.
+Containers running with the host network directly uses the host IP and ports.
+Hence we cant run multiple containers with same port due to port conflicts.
+```
+
+## None/Null Network:
+```
+None means it doesnot have any networking. we can run containers using this network but these cant accessible from within docker/host or from internet.
+App would be running but we cant access since all network is disabled excpet loopback IP.
+```
