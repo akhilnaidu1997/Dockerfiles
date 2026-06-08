@@ -208,3 +208,20 @@ docker network connect <network name> <container name>
 We can also disconnect
 docker network disconnect <network name> <container name>
 ```
+
+## Docker volumes
+```
+Docker volumes provide persistent storage for containers. Since containers use a writable layer that is tied to the container lifecycle, data stored inside the container can be lost when the container is removed. Volumes allow data to persist independently of the container lifecycle and can be shared across containers.
+
+We have diff types:
+
+Bind mounts: A file/folder from host system can be mounted to container file system
+docker run -v /host/data:/app/data nginx
+
+Named volumes: These are managed by docker and stored in /var/lib/docker .
+docker volume create myvol
+docker run -v myvol:/app/data nginx
+
+Anonymous Volumes: Docker creates volumes automatically when we create container.
+docker run -v /app/data nginx
+```
