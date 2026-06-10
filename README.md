@@ -234,6 +234,7 @@ docker run -v /app/data nginx
 - add frequently changing instructions at the bottom to maximize the image layer caching
 - use multi stage docker builds to reduce the image size
 - use .dockerignore file to prevent unwanted files from copying to image
+- donot hardcode secrets in images
 - donot run container as root user
 ```
 
@@ -243,4 +244,14 @@ multi stage builds are used to reduce the overall size of the docker image.
 Here in first stage we build image and we get the built artifact and that can be used in second stage.
 This way we can exclude the dependencies, temp files, source code , build tools.
 We can only have the run time env, built artifact with minimal base image
+```
+
+## Layer caching
+```
+for instructions that we execute like run , copy, add these are build time instructions, 
+docker creates an intermediate container executes each instruction and creates an image layer out if it. 
+this is default mechanism that docker follows. 
+Hence it always recommended to define frequently changing instructions at the bottom of the docker file to speed the build time. 
+Also need to defne related commands in same run instructions this way we can reduce the no of image layers. 
+though these layers maynot affect disk space much but increases the build time and push time
 ```
