@@ -225,3 +225,22 @@ docker run -v myvol:/app/data nginx
 Anonymous Volumes: Docker creates volumes automatically when we create container.
 docker run -v /app/data nginx
 ```
+
+## What are docker best practices that you can follow
+```
+- use minimal base images like alpine or slim
+- pin the image versions instead of using latest
+- write related commands in same RUN instructions to reduce the no of layers
+- add frequently changing instructions at the bottom to maximize the image layer caching
+- use multi stage docker builds to reduce the image size
+- use .dockerignore file to prevent unwanted files from copying to image
+- donot run container as root user
+```
+
+## why do we need to use multi stage docker builds?
+```
+multi stage builds are used to reduce the overall size of the docker image.
+Here in first stage we build image and we get the built artifact and that can be used in second stage.
+This way we can exclude the dependencies, temp files, source code , build tools.
+We can only have the run time env, built artifact with minimal base image
+```
